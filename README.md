@@ -78,7 +78,7 @@ uvicorn app.main:app --reload
 ```
 ### Accessing the API
 Once the server is running, you can access the API  at:
-`http://127.0.0.1:8002/`
+`http://127.0.0.1:8000/`
 
 ### API Endpoints
 ### Authentication

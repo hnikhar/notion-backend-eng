@@ -11,10 +11,13 @@ def send_email(subject: str, recipients: list, body: str):
 
     msg.attach(MIMEText(body, 'html'))
 
-    with smtplib.SMTP(settings.MAIL_SERVER, settings.MAIL_PORT) as server:
-        server.starttls()
-        server.login(settings.MAIL_USERNAME, settings.MAIL_PASSWORD)
-        server.sendmail(settings.MAIL_FROM, recipients, msg.as_string())
+    try:
+        with smtplib.SMTP(settings.MAIL_SERVER, settings.MAIL_PORT) as server:
+            server.starttls()
+            server.login(settings.MAIL_USERNAME, settings.MAIL_PASSWORD)
+            server.sendmail(settings.MAIL_FROM, recipients, msg.as_string())
+    except Exception as e:
+        raise Exception(f"Failed to send email: {str(e)}")
 
 def queue_email_to_prospect(email: str):
     subject = "New Lead Submission"

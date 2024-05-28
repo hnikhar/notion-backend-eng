@@ -1,13 +1,11 @@
 from pydantic import BaseModel, EmailStr
-from pydantic import BaseModel
 from typing import Optional
 from app.models import LeadState
 
 class LeadBase(BaseModel):
     first_name: str
     last_name: str
-    email: str
-    resume: Optional[str] = None
+    email: EmailStr
 
 class LeadCreate(LeadBase):
     pass
@@ -18,6 +16,7 @@ class LeadUpdate(BaseModel):
 class Lead(LeadBase):
     id: int
     state: LeadState
+    resume: Optional[bytes]  
 
     class Config:
         orm_mode = True

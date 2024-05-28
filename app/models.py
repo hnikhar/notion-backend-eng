@@ -1,4 +1,4 @@
-from sqlalchemy import Column, Integer, String, Enum, create_engine, Boolean
+from sqlalchemy import Column, Integer, String, Enum, create_engine, Boolean, LargeBinary
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 import enum
@@ -21,7 +21,7 @@ class Lead(Base):
     first_name = Column(String, index=True)
     last_name = Column(String, index=True)
     email = Column(String, index=True)
-    resume = Column(String)
+    resume = Column(LargeBinary)
     state = Column(Enum(LeadState), default=LeadState.PENDING)
 
 class User(Base):
